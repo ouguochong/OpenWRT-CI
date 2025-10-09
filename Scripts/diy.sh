@@ -311,30 +311,11 @@ if [ -f ./package/luci-app-store/Makefile ]; then
     sed -i -E 's/PKG_VERSION:=([0-9]+\.[0-9]+\.[0-9]+)-([0-9]+)/PKG_VERSION:=\1\nPKG_RELEASE:=\2/' ./package/luci-app-store/Makefile
 fi
 
-#if [ -f ./package/vlmcsd/Makefile ]; then
-#	MF=./package/vlmcsd/Makefile
-#	
-#	# 1) 把包版本号改为数字开头（1113），满足 APK 规范
-#	sed -i -E 's/^(PKG_VERSION:=).*/\11113/' "$MF"
-#	
-#	# 2) 在 PKG_VERSION 行后插入源码版本变量和正确的构建目录
-#	#    （保持下载/解压仍使用 svn1113）
-#	awk '
-#	  BEGIN{added=0}
-#	  {
-#	    print $0
-#	    if ($0 ~ /^PKG_VERSION:=1113$/ && !added) {
-#	      print "PKG_SOURCE_VERSION:=svn1113"
-#	      print "PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_SOURCE_VERSION)"
-#	      added=1
-#	    }
-#	  }
-#	' "$MF" > "$MF.tmp" && mv "$MF.tmp" "$MF"
-#	
-#	# 3) 让源码包名与下载 URL 使用 PKG_SOURCE_VERSION（仍为 svn1113）
-#	sed -i -E 's#^(PKG_SOURCE:=)\$\(PKG_NAME\)-\$\((PKG_VERSION)\)\.tar\.gz#\1$(PKG_NAME)-$(PKG_SOURCE_VERSION).tar.gz#' "$MF"
-#	sed -i -E 's#^(PKG_SOURCE_URL:=).*$#\1https://codeload.github.com/Wind4/vlmcsd/tar.gz/$(PKG_SOURCE_VERSION)?#' "$MF"
-#fi
+if [ -f ./package/luci-app-ddns-go/ddns-go/files/ddns-go.init ]; then
+    cp ${GITHUB_WORKSPACE}/Scripts/ddns-go.init ./package/luci-app-ddns-go/ddns-go/files/ddns-go.init
+	chmod +x ./package/luci-app-ddns-go/ddns-go/files/ddns-go.init
+	echo "ddns-go.init has been replaced successfully."
+fi
 
 
 #sed -i 's/"admin\/services\/openlist"/"admin\/nas\/openlist"/' package/luci-app-openlist/luci-app-openlist/root/usr/share/luci/menu.d/luci-app-openlist.json
@@ -429,4 +410,5 @@ fix_openwrt_apk_versions() {
 }
 
 fix_openwrt_apk_versions package
+
 
