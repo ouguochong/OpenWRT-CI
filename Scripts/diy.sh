@@ -40,7 +40,7 @@ UPDATE_PACKAGE() {
 	esac
 }
 
-UPDATE_PACKAGE "luci-app-poweroff" "esirplayground/luci-app-poweroff" "master"
+UPDATE_PACKAGE "luci-app-poweroff" "esirplayground/luci-app-poweroff" "main"
 UPDATE_PACKAGE "luci-app-tailscale" "asvow/luci-app-tailscale" "main"
 UPDATE_PACKAGE "openwrt-gecoosac" "lwb1978/openwrt-gecoosac" "main"
 #UPDATE_PACKAGE "luci-app-homeproxy" "immortalwrt/homeproxy" "master"
@@ -312,8 +312,8 @@ if [ -f ./package/luci-app-store/Makefile ]; then
     sed -i -E 's/PKG_VERSION:=([0-9]+\.[0-9]+\.[0-9]+)-([0-9]+)/PKG_VERSION:=\1\nPKG_RELEASE:=\2/' ./package/luci-app-store/Makefile
 fi
 
-if [ -f ./package/luci-app-ddns-go/ddns-go/files/ddns-go.init ]; then
-    cp ${GITHUB_WORKSPACE}/Scripts/ddns-go.init ./package/luci-app-ddns-go/ddns-go/files/ddns-go.init
+if [ -f ./package/luci-app-ddns-go/ddns-go/file/ddns-go.init ]; then
+    cp ${GITHUB_WORKSPACE}/Scripts/ddns-go.init ./package/luci-app-ddns-go/ddns-go/file/ddns-go.init
 	chmod +x ./package/luci-app-ddns-go/ddns-go/files/ddns-go.init
 	echo "ddns-go.init has been replaced successfully."
 fi
