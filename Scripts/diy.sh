@@ -27,8 +27,7 @@ UPDATE_PACKAGE() {
 		"pkg")
 			# 提取每个包
 			for NAME in "${PKG_NAMES[@]}"; do
-			    sources=$(find ./package/$REPO_NAME/*/ -maxdepth 3 -type d -iname "*$NAME*" -prune)
-			    [ -n "$sources" ] && cp -rf "$sources" ./package/
+			    find ./package/$REPO_NAME/*/ -maxdepth 3 -type d -iname "*$NAME*" -prune -print0 | xargs -0 cp -rf -t ./package/
 			done
 			# 删除剩余的包
 			rm -rf ./package/$REPO_NAME/
