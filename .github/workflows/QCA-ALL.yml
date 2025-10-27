@@ -33,7 +33,7 @@ jobs:
       #max-parallel: 3
       matrix:
         #CONFIG: [IPQ60XX-WIFI-YES, IPQ60XX-WIFI-NO,IPQ60XX-EMMC-WIFI-YES, IPQ60XX-EMMC-WIFI-NO, IPQ807X-WIFI-YES, IPQ807X-WIFI-NO]
-        CONFIG: [IPQ60XX-WIFI-YES, IPQ60XX-WIFI-NO,IPQ60XX-EMMC-WIFI-YES, IPQ60XX-EMMC-WIFI-NO]
+        CONFIG: [IPQ60XX-WIFI-NO]
         #SOURCE: [VIKINGYFY/immortalwrt, LiBwrt/openwrt-6.x]
         #BRANCH: [main, k6.12-nss]
         SOURCE: [VIKINGYFY/immortalwrt]
